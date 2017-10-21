@@ -1,0 +1,23 @@
+{
+  "name": "look-env",
+  "version": "0.0.1",
+  "description": "Set rules for the .env in your project",
+  "main": "src/index.js",
+  "repository": "https://github.com/RodrigoEspinosa/look-env",
+  "author": "rec <espinosacurbelo@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "test": "cd test && node index.js",
+    "precommit": "lint-staged",
+    "lint": "prettier"
+  },
+  "dependencies": {
+    "cosmiconfig": "^3.1.0",
+    "dotenv": "^4.0.0"
+  },
+  "devDependencies": {
+    "husky": "^0.14.3",
+    "lint-staged": "^4.3.0",
+    "prettier": "^1.7.4"
+  }
+}
