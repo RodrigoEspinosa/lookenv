@@ -1,4 +1,5 @@
 const statusForVar = require('./status-for-var')
+const { isRequired, hasDefault } = require('./rules')
 
 /**
  * Get the value of a variable from the environment.
@@ -19,6 +20,11 @@ const getValueFromEnv = (varName, context = process.env) => context[varName]
  */
 const processDefault = (varName, varDefault, context) => {
   context[varName] = varDefault
+
+  if (typeof varDefault === 'object') {
+    context[varName] = JSON.stringify(varDefault)
+  }
+
   return varDefault
 }
 
@@ -34,15 +40,15 @@ module.exports = (rules, varName, context) => {
   const originalValue = getValueFromEnv(varName, context)
 
   // Check if the variable is required and not present.
-  if (rules.required && !originalValue) {
+  if (isRequired(rules) && !originalValue) {
     // Return the error specifying that the variable is not present.
     return statusForVar(varName, new Error(`Missing ${varName}`))
   }
 
   // Check if the variable has a default and is not present.
-  if (rules.default && !originalValue) {
+  if (hasDefault(rules) && !originalValue) {
     // Apply the fault to the variable.
-    processDefault(varName, rules.default, context)
+    processDefault(varName, hasDefault(rules), context)
   }
 
   // Return the state, to give the script a reference.

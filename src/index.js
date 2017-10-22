@@ -26,7 +26,7 @@ module.exports = {
    *  Validate the context (generally `process.env`.)
    *
    * @param  {String}  path
-   * @param  {[type]}  [context=process.env]
+   * @param  {Object}  [context=process.env]
    * @return {Promise}
    */
   validate: async ({ path, context = process.env } = DEFAULT_PARAMS) => {
@@ -50,7 +50,7 @@ module.exports = {
       return applyRules(rule, varName, context)
     })
 
-    //
+    // Filter the status of those that contains errors.
     const hasErrors = status.filter(({ status }) => status === 'error')
 
     // Check if there are errors in the status.

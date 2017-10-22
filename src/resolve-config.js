@@ -1,20 +1,45 @@
-const cosmiconfig = require('cosmiconfig');
+const cosmiconfig = require('cosmiconfig')
 
-const explorer = cosmiconfig('lookenv');
+const cleanConfig = config =>
+  Object.keys(config).reduce((collection, item) => {
+    // Check if the value of the item is not an object with the rules,
+    // but a literal value.
+    if (['string', 'number', 'boolean'].includes(typeof config[item])) {
+      // In that case, assing the literal value as the variable default.
+      collection[item] = {
+        default: config[item]
+      }
 
+      // Otherwise, use the set of rules for the
+      // variable as stablished in the config file.
+    } else {
+      collection[item] = config[item]
+    }
+
+    // Return the modified collection.
+    return collection
+  }, {})
+
+// Load the config for the package name `lookenv`.
+const explorer = cosmiconfig('lookenv', {
+  transform: async ({ config, filepath }) => {
+    return { config: cleanConfig(config), filepath }
+  }
+})
+
+// Set the default path as the current working directory.
 const DEFAULT_PATH = process.cwd()
 
-const loadConfig = async ({ path = DEFAULT_PATH }) => {
-  console.log({ path })
-
+module.exports = async ({ path = DEFAULT_PATH }) => {
   try {
-    const { config, filepath } = await explorer.load(path)
+    // Load the config.
+    const { config, filepath } = await explorer.load(null, path)
+
+    // Return the config and filepath.
     return { config, filepath }
-  }
-  catch (parsingError) {
-    console.error('Parsing error:', parsingError);
+  } catch (parsingError) {
+    // Log any errors.
+    console.error('Parsing error:', parsingError)
     return parsingError
   }
 }
-
-module.exports = loadConfig

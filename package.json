@@ -7,7 +7,7 @@
   "author": "rec <espinosacurbelo@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "test": "cd test && node index.js",
+    "test": "ava test/test-*.js",
     "precommit": "lint-staged",
     "lint": "prettier"
   },
@@ -16,6 +16,7 @@
     "dotenv": "^4.0.0"
   },
   "devDependencies": {
+    "ava": "^0.22.0",
     "husky": "^0.14.3",
     "lint-staged": "^4.3.0",
     "prettier": "^1.7.4"
