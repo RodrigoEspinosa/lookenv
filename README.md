@@ -1,2 +1,2 @@
-# look-env
-Set rules for the .env in your project
+# lookenv
+Set rules for the environment variables in your project. Works great with dotenv
