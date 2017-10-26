@@ -1,4 +1,7 @@
 # lookenv
+
+<img alt="lookenv" title="lookenv" width="256" src="https://github.com/RodrigoEspinosa/lookenv/blob/82e61a67e8f1d5fee0eb95cbbc0327dac74254f7/lookenv.png" align="right" />
+
 > Set rules for the environment variables in your project.
 
 [![NPM Version][npm-image]][npm-url]
@@ -7,8 +10,6 @@
 
 `lookenv` can check if all the variables you need are present before starting your app. It also can set defaults for those variables that are not present. Works fine with `dotenv` or `dotenv-safe`.
 
-
-<!-- ![](header.png) -->
 
 ## Installation
 
@@ -35,49 +36,21 @@ module.exports = {
 }
 ```
 
-In order to get started with `lookenv` you need to setup a *validate* script, and call that script to know if all the env vars are present before continuing.
-
-```js
-const lookenv = require('lookenv')
-
-
-lookenv.validate()
-  .then(() => {
-    process.exit(0)
-  })
-  .catch(error => {
-    console.error(error)
-
-    process.exit(1)
-  })
-```
-
-You can save that file in the project root, and call it from the startup script. Or (and this is the recommended) just from the `package.json`, like:
+Then, add `lookenv` to the `package.json` start script, before the app starts but after dotenv (if you are using it!).
 
 ```json
 {
-  "scripts": {
-    "start": "node ./lookenv-validate.js && node index.js"
-  }
+  "start": "lookenv && node index.js"
 }
 ```
 
-Or, in your app entry point (but remember that `lookenv.validate` is async!):
+You can also specify a path to the config file, or the directory where the config file by passing `--path` or `-p`.
 
-```js
-require('dotenv').config()
-
-require('lookenv').validate()
-  .then(() => {
-    // ... your app goes here, basically...
-  })
-  .catch(error => {
-    console.error(error)
-    process.exit(1)
-  })
+```json
+{
+  "start": "lookenv --path=lookenv.config.js && node index.js"
+}
 ```
-
-_At the moment, lookenv only exposes a procedural approach for checking the rules. I will look into making a binary to test it without having to write that sample file._
 
 #### With `dotenv`
 
@@ -137,6 +110,49 @@ After that, it will validate the `context` (that is `process.env` as default) an
 
 If there is a required variable that isn't present, it will throw an error specifying the missing variables.
 
+
+## Programmatic use
+
+```js
+const lookenv = require('lookenv')
+
+
+lookenv.validate()
+  .then(() => {
+    process.exit(0)
+  })
+  .catch(error => {
+    console.error(error)
+
+    process.exit(1)
+  })
+```
+
+You can save that file in the project root, and call it from the startup script. Or (and this is the recommended) just from the `package.json`, like:
+
+```json
+{
+  "scripts": {
+    "start": "node ./lookenv-validate.js && node index.js"
+  }
+}
+```
+
+Or, in your app entry point (but remember that `lookenv.validate` is async!):
+
+```js
+require('dotenv').config()
+
+require('lookenv').validate()
+  .then(() => {
+    // ... your app goes here, basically...
+  })
+  .catch(error => {
+    console.error(error)
+    process.exit(1)
+  })
+```
+
 ## Development setup
 
 This project use `ava` to run tests. Just [fork it](https://github.com/RodrigoEspinosa/lookenv/fork).
@@ -149,6 +165,10 @@ yarn test
 ```
 
 ## Release History
+
+* 0.3.0
+    * ADD: CLI to validate easily
+    * ADD: Logo
 
 * 0.2.0
     * ADD: Tests
@@ -166,12 +186,14 @@ Distributed under the MIT license. See ``LICENSE`` for more information.
 
 [https://github.com/RodrigoEspinosa/lookenv](https://github.com/RodrigoEspinosa/lookenv)
 
+**Credits of the logo goes to [@guillecura](http://guillecura.co/).**
+
 ## Contributing
 
 1. Fork it (<https://github.com/RodrigoEspinosa/lookenv/fork>)
-2. Create your feature branch (`git checkout -b feature/fooBar`)
-3. Commit your changes (`git commit -am 'Add some fooBar'`)
-4. Push to the branch (`git push origin feature/fooBar`)
+2. Create your feature branch (`git checkout -b feature/foo-bar`)
+3. Commit your changes (`git commit -am 'Add some foo and bar'`)
+4. Push to the branch (`git push origin feature/foo-bar`)
 5. Create a new Pull Request
 
 <!-- Markdown link & img dfn's -->
