@@ -1,5 +1,9 @@
+/**
+ * Used when testing.
+ * "test": "./bin/lookenv.js && ava test/test-*.js",
+ */
 module.exports = {
-  'PORT': {
-    required: true
+  TESTING: {
+    required: false
   }
-}
+};
