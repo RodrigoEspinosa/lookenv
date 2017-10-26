@@ -1,6 +1,6 @@
 {
   "name": "lookenv",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "Set rules for the environment variables in your project. Works great with dotenv",
   "main": "src/index.js",
   "repository": "https://github.com/RodrigoEspinosa/lookenv",
@@ -10,6 +10,12 @@
     "test": "./bin/lookenv.js && ava test/test-*.js",
     "precommit": "lint-staged",
     "lint": "prettier"
+  },
+  "lint-staged": {
+    "*.js": [
+      "prettier --write",
+      "git add"
+    ]
   },
   "bin": {
     "lookenv": "./bin/lookenv"
