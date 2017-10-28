@@ -1,6 +1,6 @@
 {
   "name": "lookenv",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "Set rules for the environment variables in your project. Works great with dotenv",
   "main": "src/index.js",
   "repository": "https://github.com/RodrigoEspinosa/lookenv",
@@ -18,7 +18,7 @@
     ]
   },
   "bin": {
-    "lookenv": "./bin/lookenv"
+    "lookenv": "./bin/lookenv.js"
   },
   "dependencies": {
     "commander": "^2.11.0",
