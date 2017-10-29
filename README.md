@@ -40,7 +40,7 @@ Then, add `lookenv` to the `package.json` start script, before the app starts bu
 
 ```json
 {
-  "start": "lookenv && node index.js"
+  "start": "lookenv -- node index.js"
 }
 ```
 
@@ -48,7 +48,7 @@ You can also specify a path to the config file, or the directory where the confi
 
 ```json
 {
-  "start": "lookenv --path=lookenv.config.js && node index.js"
+  "start": "lookenv --path=lookenv.config.js -- node index.js"
 }
 ```
 

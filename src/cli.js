@@ -1,6 +1,7 @@
 const program = require("commander");
-const { validate } = require("./index");
+const { spawn } = require("child_process");
 
+const { validate } = require("./index");
 const { version } = require("../package.json");
 
 // Define the options for the program.
@@ -16,8 +17,17 @@ module.exports.run = async args => {
     // Validate (the path is the current working directory as default.)
     await validate({ path: program.path });
 
-    // Exit the script with a `0` status code as everything went ok.
-    process.exit(0);
+    // Spaw the program.
+    if (program.args.length < 1) {
+      // Exit the script with a `0` status code as everything went ok.
+      return process.exit(0);
+    }
+
+    // Get the program and its arguments, which is everything after `--`.
+    const [childProgram, ...childProgramArgs] = program.args;
+
+    // Spawn the program.
+    spawn(childProgram, childProgramArgs, { stdio: "inherit" });
   } catch (error) {
     // Log the error into the console. This specifies the variable names.
     console.error(error);
