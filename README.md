@@ -52,29 +52,43 @@ You can also specify a path to the config file, or the directory where the confi
 }
 ```
 
-#### With `dotenv`
+### With `dotenv`
 
-If you have a file just for the `lookenv.validate` (as the example above), then you would need to set the `require('dotenv').config()` on the first line of both files, the `lookenv-validate.js` **and** the entry point of your app.
+You can pass a `--dotenv` (or `-d` for short) to the cli to load `dotenv` before
+validating the env vars.
 
-```js
-require('dotenv').config()
-
-lookenv.validate()
-  .then(() => {
-    process.exit(0)
-  })
-  .catch(error => {
-    console.error(error)
-
-    process.exit(1)
-  })
+```json
+  "start": "lookenv --dotenv -- node index.js"
 ```
 
-#### With `dotenv-safe`
+_You can optionally pass the location of your `.env` in the `--dotenv` option,
+like `lookenv --dotenv=/path/to/custom/env -- node index.js`._
 
-`dotenv-safe` will take care of the required ENV VARS from the `.env.example.js`, you can setup extra required variables or use `lookenv` just for setting defaults. That's actually encourage as a transition.
+<!--
+  #### With `dotenv`
 
-The code would look the same as "With `dotenv`" but replacing `dotenv` with `dotenv-safe`.
+  If you have a file just for the `lookenv.validate` (as the example above), then you would need to set the `require('dotenv').config()` on the first line of both files, the `lookenv-validate.js` **and** the entry point of your app.
+
+  ```js
+  require('dotenv').config()
+
+  lookenv.validate()
+    .then(() => {
+      process.exit(0)
+    })
+    .catch(error => {
+      console.error(error)
+
+      process.exit(1)
+    })
+  ```
+
+  #### With `dotenv-safe`
+
+  `dotenv-safe` will take care of the required ENV VARS from the `.env.example.js`, you can setup extra required variables or use `lookenv` just for setting defaults. That's actually encourage as a transition.
+
+  The code would look the same as "With `dotenv`" but replacing `dotenv` with `dotenv-safe`.
+-->
 
 #### Using it just for setting defaults
 
@@ -140,6 +154,9 @@ yarn test
 ```
 
 ## Release History
+
+* 0.4.0
+    * Add out-of-the-box `dotenv` option.
 
 * 0.3.0
     * ADD: CLI to validate easily

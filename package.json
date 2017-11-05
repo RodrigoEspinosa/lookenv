@@ -22,14 +22,14 @@
   },
   "dependencies": {
     "commander": "^2.11.0",
-    "cosmiconfig": "^3.1.0"
+    "cosmiconfig": "^3.1.0",
+    "dotenv": "^4.0.0"
   },
   "prettier": {
     "single-quote": true
   },
   "devDependencies": {
     "ava": "^0.22.0",
-    "dotenv": "^4.0.0",
     "husky": "^0.14.3",
     "lint-staged": "^4.3.0",
     "prettier": "^1.7.4"

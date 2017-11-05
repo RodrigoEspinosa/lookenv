@@ -1,3 +1,4 @@
+const dotenv = require('dotenv');
 const program = require('commander');
 const { spawn } = require('child_process');
 
@@ -7,6 +8,7 @@ const { version } = require('../package.json');
 // Define the options for the program.
 program
   .version(version)
+  .option('-d --dotenv [path]', 'Config dotenv before executive lookenv')
   .option('-p --path <path>', 'Path to the config file', process.cwd());
 
 module.exports.run = async args => {
@@ -14,6 +16,16 @@ module.exports.run = async args => {
   program.parse(args);
 
   try {
+    // Check if dotenv should be loaded before, with optional path.
+    if (program.dotenv) {
+      // Set the dotenv path if this is specified.
+      const dotenvConfig =
+        program.dotenv !== true ? { path: program.dotenv } : {};
+
+      // Load dotenv.
+      dotenv.config(dotenvConfig);
+    }
+
     // Validate (the path is the current working directory as default.)
     await validate({ path: program.path });
 
