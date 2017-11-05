@@ -116,34 +116,7 @@ If there is a required variable that isn't present, it will throw an error speci
 ```js
 const lookenv = require('lookenv')
 
-
 lookenv.validate()
-  .then(() => {
-    process.exit(0)
-  })
-  .catch(error => {
-    console.error(error)
-
-    process.exit(1)
-  })
-```
-
-You can save that file in the project root, and call it from the startup script. Or (and this is the recommended) just from the `package.json`, like:
-
-```json
-{
-  "scripts": {
-    "start": "node ./lookenv-validate.js && node index.js"
-  }
-}
-```
-
-Or, in your app entry point (but remember that `lookenv.validate` is async!):
-
-```js
-require('dotenv').config()
-
-require('lookenv').validate()
   .then(() => {
     // ... your app goes here, basically...
   })
@@ -152,6 +125,8 @@ require('lookenv').validate()
     process.exit(1)
   })
 ```
+
+_Remember that `lookenv.validate` is async._
 
 ## Development setup
 

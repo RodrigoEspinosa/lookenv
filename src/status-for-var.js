@@ -4,12 +4,12 @@ module.exports = (name, error) => {
       name,
       status: 'error',
       error
-    }
+    };
   }
 
   return {
     name,
     status: 'ok',
     error: null
-  }
-}
+  };
+};

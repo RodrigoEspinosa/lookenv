@@ -1,13 +1,13 @@
-const program = require("commander");
-const { spawn } = require("child_process");
+const program = require('commander');
+const { spawn } = require('child_process');
 
-const { validate } = require("./index");
-const { version } = require("../package.json");
+const { validate } = require('./index');
+const { version } = require('../package.json');
 
 // Define the options for the program.
 program
   .version(version)
-  .option("-p --path <path>", "Path to the config file", process.cwd());
+  .option('-p --path <path>', 'Path to the config file', process.cwd());
 
 module.exports.run = async args => {
   // Parse the arguments.
@@ -27,7 +27,7 @@ module.exports.run = async args => {
     const [childProgram, ...childProgramArgs] = program.args;
 
     // Spawn the program.
-    spawn(childProgram, childProgramArgs, { stdio: "inherit" });
+    spawn(childProgram, childProgramArgs, { stdio: 'inherit' });
   } catch (error) {
     // Log the error into the console. This specifies the variable names.
     console.error(error);

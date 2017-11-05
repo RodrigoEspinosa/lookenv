@@ -1,9 +1,9 @@
 /**
  * Used when testing.
- * "test": "./bin/lookenv.js && ava test/test-*.js",
+ * "test": "TESTING=true ./bin/lookenv.js -- ava test/test-*.js"
  */
 module.exports = {
   TESTING: {
-    required: false
+    required: true
   }
 };

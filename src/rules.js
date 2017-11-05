@@ -1,6 +1,6 @@
-const isRequired = rules => rules.required
+const isRequired = rules => rules.required;
 
-const hasDefault = rules => rules.default
+const hasDefault = rules => rules.default;
 
 /**
  * BOOK OF RULES.
@@ -8,4 +8,4 @@ const hasDefault = rules => rules.default
 module.exports = {
   isRequired,
   hasDefault
-}
+};

@@ -11,4 +11,4 @@ module.exports = {
   AN_OBJECT_WITH_DEFAULTS: {
     default: { testing: true }
   }
-}
+};

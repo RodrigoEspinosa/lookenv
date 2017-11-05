@@ -7,9 +7,9 @@
   "author": "rec <espinosacurbelo@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "test": "./bin/lookenv.js && ava test/test-*.js",
+    "test": "TESTING=true ./bin/lookenv.js -- ava test/test-*.js",
     "precommit": "lint-staged",
-    "lint": "prettier"
+    "lint": "prettier *.js --write"
   },
   "lint-staged": {
     "*.js": [
@@ -23,6 +23,9 @@
   "dependencies": {
     "commander": "^2.11.0",
     "cosmiconfig": "^3.1.0"
+  },
+  "prettier": {
+    "single-quote": true
   },
   "devDependencies": {
     "ava": "^0.22.0",
