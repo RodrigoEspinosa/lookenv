@@ -10,9 +10,7 @@
 
 `lookenv` can check if all the variables you need are present before starting your app. It also can set defaults for those variables that are not present. Works fine with `dotenv` or `dotenv-safe`.
 
-
 ## Installation
-
 
 ```sh
 npm install lookenv --save
@@ -90,7 +88,32 @@ like `lookenv --dotenv=/path/to/custom/env -- node index.js`._
   The code would look the same as "With `dotenv`" but replacing `dotenv` with `dotenv-safe`.
 -->
 
-#### Using it just for setting defaults
+### With [`Joi`](https://github.com/hapijs/joi)
+
+_Joi, the object schema description language and validator for JavaScript objects._
+
+Lookenv recognizes and supports Joi schemas from the config files. In order to do so, please remember to install (`npm install --save joi`) in your project. And then, export the Joi schema in your `lookenv.config.js` file.
+
+```js
+const Joi = require('joi');
+
+module.exports = Joi.object().keys({
+  A_NUMBER: Joi.number().required(),
+  A_STRING: Joi.string().required(),
+  AN_OBJECT: Joi.string().required(),
+
+  A_PORT: Joi.number()
+    .positive()
+    .default(3000),
+
+  A_NUMBER_WITH_DEFAULTS: Joi.number().default(7),
+  A_STRING_WITH_DEFAULTS: Joi.string().default('seven')
+})
+```
+
+This means that you can use the entire [Joi Schema API](https://github.com/hapijs/joi/blob/v13.0.2/API.md) to validate your env vars.
+
+### Using it just for setting defaults
 
 Everything would be the same, but you can use the simplified `lookenv.config.js` (or `.lookenvrc`) json that matches every key with a default.
 
