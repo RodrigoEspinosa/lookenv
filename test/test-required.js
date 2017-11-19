@@ -20,7 +20,7 @@ test.serial('import .config file with a missing required', async t => {
 
   const error = await t.throws(lookenv.validate({ path: PATH_TO_LOOK_ENV }));
 
-  t.is(error.message, 'Missing SOMETHING_ELSE_REQUIRED');
+  t.is(error.message, '"SOMETHING_ELSE_REQUIRED" is required');
 
   t.is(process.env.A_NUMBER, '1');
   t.is(process.env.A_STRING, 'testing');

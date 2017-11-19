@@ -10,8 +10,14 @@ const DEFAULT_PATH = process.cwd();
  * @param  {Object} config
  * @return {Object}
  */
-const cleanConfig = config =>
-  Object.keys(config).reduce((collection, item) => {
+const cleanConfig = config => {
+  // Check if the config is using `joi` instead of a plain object.
+  if (config.isJoi) {
+    // Bypass the transformation.
+    return config;
+  }
+
+  return Object.keys(config).reduce((collection, item) => {
     // Check if the value of the item is not an object with the rules,
     // but a literal value.
     if (['string', 'number', 'boolean'].includes(typeof config[item])) {
@@ -29,6 +35,7 @@ const cleanConfig = config =>
     // Return the modified collection.
     return collection;
   }, {});
+};
 
 // Load the config for the package name `lookenv`.
 const explorer = cosmiconfig('lookenv', {

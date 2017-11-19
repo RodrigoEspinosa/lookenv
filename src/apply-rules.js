@@ -42,7 +42,7 @@ module.exports = (rules, varName, context) => {
   // Check if the variable is required and not present.
   if (isRequired(rules) && !originalValue) {
     // Return the error specifying that the variable is not present.
-    return statusForVar(varName, new Error(`Missing ${varName}`));
+    return statusForVar(varName, new Error(`"${varName}" is required`));
   }
 
   // Check if the variable has a default and is not present.
