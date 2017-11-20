@@ -9,6 +9,7 @@
   "scripts": {
     "test": "TESTING=true ./bin/lookenv.js -- ava test/test-*.js",
     "precommit": "lint-staged",
+    "build": "babel src -d lib",
     "lint": "prettier *.js --write"
   },
   "lint-staged": {
@@ -30,6 +31,9 @@
   },
   "devDependencies": {
     "ava": "^0.22.0",
+    "babel": "^6.23.0",
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
     "husky": "^0.14.3",
     "joi": "^13.0.2",
     "lint-staged": "^4.3.0",
