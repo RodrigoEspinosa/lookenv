@@ -1,3 +1,5 @@
+require('babel-polyfill');
+
 const dotenv = require('dotenv');
 const program = require('commander');
 const { spawn } = require('child_process');

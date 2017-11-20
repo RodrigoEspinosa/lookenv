@@ -4,9 +4,10 @@
       "env",
       {
         "targets": {
-          "node": "8.9.0"
+          "node": "4.3.0"
         }
       }
     ]
-  ]
+  ],
+  "plugins": ["transform-regenerator"]
 }

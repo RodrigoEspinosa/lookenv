@@ -1,3 +1,5 @@
+require('babel-polyfill');
+
 const validateJoi = require('./validate-joi');
 const loadConfig = require('./resolve-config');
 const validatePlain = require('./validate-plain');
