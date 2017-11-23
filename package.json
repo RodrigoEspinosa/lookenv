@@ -1,6 +1,6 @@
 {
   "name": "lookenv",
-  "version": "0.6.2",
+  "version": "0.6.3",
   "description": "Set rules for the environment variables in your project. Works great with dotenv",
   "main": "src/index.js",
   "repository": "https://github.com/RodrigoEspinosa/lookenv",
@@ -8,7 +8,7 @@
   "license": "MIT",
   "scripts": {
     "test": "TESTING=true ./bin/lookenv.js -- ava test/test-*.js",
-    "precommit": "yarn build && yarn test && lint-staged",
+    "precommit": "lint-staged",
     "build": "babel src -d lib",
     "lint": "prettier src/*.js test/*.js --write"
   },
