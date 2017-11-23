@@ -6,4 +6,4 @@ module.exports = {
   TESTING: {
     required: true
   }
-};
+}

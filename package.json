@@ -8,13 +8,13 @@
   "license": "MIT",
   "scripts": {
     "test": "TESTING=true ./bin/lookenv.js -- ava test/test-*.js",
-    "precommit": "lint-staged",
+    "precommit": "yarn build && yarn test && lint-staged",
     "build": "babel src -d lib",
-    "lint": "prettier *.js --write"
+    "lint": "prettier src/*.js test/*.js --write"
   },
   "lint-staged": {
     "*.js": [
-      "prettier --write",
+      "yarn lint",
       "git add"
     ]
   },
@@ -27,6 +27,7 @@
     "dotenv": "^4.0.0"
   },
   "prettier": {
+    "semi": false,
     "single-quote": true
   },
   "devDependencies": {
@@ -37,6 +38,6 @@
     "husky": "^0.14.3",
     "joi": "^13.0.2",
     "lint-staged": "^4.3.0",
-    "prettier": "^1.7.4"
+    "prettier": "^1.8.2"
   }
 }

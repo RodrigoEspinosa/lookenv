@@ -8,4 +8,4 @@ module.exports = {
   SOMETHING_ELSE_REQUIRED: {
     required: true
   }
-};
+}

@@ -1,5 +1,5 @@
-const statusForVar = require('./status-for-var');
-const { isRequired, hasDefault } = require('./rules');
+const statusForVar = require('./status-for-var')
+const { isRequired, hasDefault } = require('./rules')
 
 /**
  * Get the value of a variable from the environment.
@@ -7,7 +7,7 @@ const { isRequired, hasDefault } = require('./rules');
  * @param  {Object} [context=process.env]
  * @return {Object}
  */
-const getValueFromEnv = (varName, context = process.env) => context[varName];
+const getValueFromEnv = (varName, context = process.env) => context[varName]
 
 /**
  * Mutate the state of `context` (generally `process.env`)
@@ -19,14 +19,14 @@ const getValueFromEnv = (varName, context = process.env) => context[varName];
  * @return {Object}
  */
 const processDefault = (varName, varDefault, context) => {
-  context[varName] = varDefault;
+  context[varName] = varDefault
 
   if (typeof varDefault === 'object') {
-    context[varName] = JSON.stringify(varDefault);
+    context[varName] = JSON.stringify(varDefault)
   }
 
-  return varDefault;
-};
+  return varDefault
+}
 
 /**
  * Apply the set of rules for the variable in question.
@@ -37,20 +37,20 @@ const processDefault = (varName, varDefault, context) => {
  */
 module.exports = (rules, varName, context) => {
   // Get the current value of the variable from the environment.
-  const originalValue = getValueFromEnv(varName, context);
+  const originalValue = getValueFromEnv(varName, context)
 
   // Check if the variable is required and not present.
   if (isRequired(rules) && !originalValue) {
     // Return the error specifying that the variable is not present.
-    return statusForVar(varName, new Error(`"${varName}" is required`));
+    return statusForVar(varName, new Error(`"${varName}" is required`))
   }
 
   // Check if the variable has a default and is not present.
   if (hasDefault(rules) && !originalValue) {
     // Apply the fault to the variable.
-    processDefault(varName, hasDefault(rules), context);
+    processDefault(varName, hasDefault(rules), context)
   }
 
   // Return the state, to give the script a reference.
-  return statusForVar(varName);
-};
+  return statusForVar(varName)
+}

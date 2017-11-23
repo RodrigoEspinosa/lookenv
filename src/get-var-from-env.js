@@ -1,1 +1,1 @@
-module.export = (varName, context = process.env) => context[varName];
+module.export = (varName, context = process.env) => context[varName]

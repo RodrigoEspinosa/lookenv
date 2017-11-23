@@ -1,6 +1,9 @@
 # Changelog
 
-This is the changelog for [lookenv](https://github.com/RodrigoEspinosa/lookenv). **Last update: Nov. 19th, 2017.**
+This is the changelog for [lookenv](https://github.com/RodrigoEspinosa/lookenv). **Last update: Nov. 23rd, 2017.**
+
+* 0.6.0
+  * ADD: Babel to support older versions of Node
 
 * 0.5.0
   * ADD: Accept Joi schemas in validations

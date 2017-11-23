@@ -9,5 +9,7 @@
       }
     ]
   ],
-  "plugins": ["transform-regenerator"]
+  "plugins": [
+    "transform-regenerator"
+  ]
 }
