@@ -1,5 +1,5 @@
 const test = require('ava')
-const lookenv = require('../lib')
+const lookenv = require('../src')
 
 const PATH_TO_DOT_LOOKENV = `${__dirname}/.lookenvrc`
 

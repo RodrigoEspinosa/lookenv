@@ -1,6 +1,9 @@
 # Changelog
 
-This is the changelog for [lookenv](https://github.com/RodrigoEspinosa/lookenv). **Last update: Nov. 23rd, 2017.**
+This is the changelog for [lookenv](https://github.com/RodrigoEspinosa/lookenv). **Last update: Oct. 22nd, 2018.**
+
+* 1.0.0
+  * REMOVE: Babel, only support Node 7 or newer.
 
 * 0.6.0
   * ADD: Babel to support older versions of Node

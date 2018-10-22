@@ -1,6 +1,6 @@
 const test = require('ava')
 const dotenv = require('dotenv')
-const lookenv = require('../lib')
+const lookenv = require('../src')
 
 const PATH_TO_DOT_ENV = `${__dirname}/.env-for-joi-with-errors`
 const PATH_TO_LOOK_ENV = `${__dirname}/lookenv-with-joi-errors.config.js`

@@ -1,5 +1,5 @@
 #!/usr/bin/env node
 
-'use strict';
+'use strict'
 
-require('../lib/cli').run(process.argv);
+require('../src/cli').run(process.argv)
